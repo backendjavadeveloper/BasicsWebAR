@@ -1,0 +1,27 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+</head>
+<script>
+    document.getElementById("hello");
+</script>
+
+<body>
+
+    <a-scene>
+        <a-assets>
+            <img id="journeySummaryImage" src="./augmented-reality-without-react/images/journey-summary.png">
+            </img>
+        </a-assets>
+        <a-entity geometry="primitive: box; height: 1; width: 1; depth: 1"
+            material="src: #journeySummaryImage" />
+    </a-scene>
+</body>
+
+</html>

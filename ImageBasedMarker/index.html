@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>image tracking</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
+
+</head>
+<script>
+    
+</script>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+    <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded
+        arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
+
+        <a-assets>
+            <img id="id-card" src="./Employee-id-48-CRC.png">
+            </img>
+
+        </a-assets>
+        <a-entity id="id-card-plane" geometry="primitive: plane; width: 2; height: 2; " position="0 0 -10"
+        rotation="-90 0 0"
+        material="shader: flat; src: #id-card ;transparent: true; opacity: 1;" visible="true">
+    </a-entity>
+        <!-- <a-nft type='nft' url='./ImageBasedMarker/cat-image' smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+            <a-entity id="id-card-plane" geometry="primitive: plane; width: 23; height: 23; " position="0 0 0"
+                rotation="-90 0 0"
+                material="shader: flat; src: #id-card ;transparent: true; opacity: 1;" visible="true">
+            </a-entity>
+        </a-nft> -->
+        <!-- <a-entity camera></a-entity> -->
+    </a-scene>
+</body>
+
+</html>

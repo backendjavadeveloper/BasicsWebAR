@@ -1,0 +1,18 @@
+            
+<a-entity
+            id="journey-details"
+            journey-details-listener
+            cursor="fuse: true; fuseTimeout: 500"
+            position="2 0 0"
+            geometry="primitive: box; height: 0.1; depth: 1.5;"
+            material="shader: flat; src: #journeySummaryImage"
+            visible="false">
+            <!-- <a-animation attribute="position"
+              dur="3000"
+              animationbegin="journeyDetailsAnimation"
+              from="1 0.1 0"
+              to="2 0.01 0"/> -->
+          </a-entity>
+
+
+          
