@@ -8,7 +8,11 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
-
+<style>
+    #mycanvas {
+        color : red;
+    }
+</style>
 <body>
   <a-scene embedded arjs>
         <a-entity camera look-controls>
@@ -18,6 +22,9 @@
                   material="color: black; shader: flat">
         </a-entity>
       </a-entity>
+      <canvas id="mycanvas">
+
+      </canvas>
       
       <a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
       <a-assets>
@@ -29,6 +36,11 @@
   </a-scene>
 </body>
 <script>
+    let can = document.querySelector("#mycanvas");
+    can.width = "300";
+    can.height = "200";
+
+    console.log(can);
         // if thf component is clicked, then try and call that number
         AFRAME.registerComponent("call", {
           schema: {

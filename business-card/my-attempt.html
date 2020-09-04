@@ -9,21 +9,36 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
     <script>
+        AFRAME.registerComponent('navigate-on-click', {
+            schema: {
+                url: {
+                    default: ''
+                }
+            },
+            init: function () {
+                var data = this.data;
+                var el = this.el;
+                el.addEventListener('click', function () {
+                    console.log("clicked");
+                    window.open(data.url, '_blank');
+                });
+            }
+        });
         AFRAME.registerComponent('employee-face', {
             schema: {
-                url: { default : ''}
+                url: {
+                    default: ''
+                }
             },
             init: function () {
                 var lastIndex = -1;
                 var visible = ['true', 'false'];
                 var data = this.data;
                 var el = this.el;
-                console.log("data is" + data );
+                console.log("data is" + data);
                 console.log(el);
+                
                 el.addEventListener('click', function (event) {
-                    console.log("image clicked");
-                });
-                document.addEventListener('click', function (event) {  
                     var box = document.getElementById("id-card-plane");
                     lastIndex = (lastIndex + 1) % visible.length;
                     if (visible[lastIndex] === 'true') {
@@ -32,7 +47,7 @@
                     }
                     box.setAttribute('visible', `${visible[lastIndex]}`)
                 });
-                
+
             }
         });
     </script>
@@ -40,29 +55,67 @@
 
 <body>
     <a-scene embedded arjs='trackingMethod: best;'>
+        <a-entity camera look-controls>
+            <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+            </a-entity>
+        </a-entity>
         <a-assets>
             <img id="emp-face" src="./images/id-face.jpg">
             </img>
             <img id="id-card" src="./images/Employee-id-48-CRC.jpg" />
+            <img id="github_icon"
+                src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_github-512.png">
+            <img id="insta_icon"
+                src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_instagram-512.png">
+            <img id="linkedin_icon"
+                src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_likedin-512.png">
+            <img id="facebook_icon"
+                src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_facebook-512.png">
         </a-assets>
 
         <!-- <a-marker preset='custom' type='pattern' url='./patterns/train-ticket.patt'> -->
         <a-marker preset='hiro'>
-               
-            <a-entity id="id-card-plane" geometry="primitive: plane;  width: 1; height: 1; " 
-                position="1.2 0 0" width="1" height="1" rotation="-90 0 0"
+
+            <a-entity id="id-card-plane" geometry="primitive: plane;  width: 1; height: 1; " position="1.2 0 0"
+                width="1" height="1" rotation="-90 0 0"
                 material="shader: flat; src: #id-card ;transparent: true; opacity: 0.5;" visible="false"
                 animation="property: position; from: 1 0 0; to: 1.3 0 0; dur: 1000; easing: linear; loop: false ; startEvents: journeyDetailsAnimation;">
-            </a-entity>                
-            
-            <a-entity id="emp-face-entity" employee-face="url: abc" geometry="primitive: plane;  width:1;  height: 1;"
-                material="shader: flat; src: #emp-face;" visible="true" scale="1 1 1"
-                rotation="-90 0 0"  >
+
+                <a-plane position="0 -0.8 0.8" color="transparent" opacity="0" width="2" height="0.3"
+                    rotation="-90 0 0">
+                    <a-box src="#github_icon" position="-0.4 0 0" depth="0.15" height="0.15" width="0.15"
+                        navigate-on-click="url: https://github.com/backendjavadeveloper">
+                        <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+                    <a-box src="#insta_icon" position="0 0 0" depth="0.15" height="0.15" width="0.15"
+                        navigate-on-click="url: https://www.instagram.com/deepushri/">
+                        <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+                    <a-box src="#linkedin_icon" position="0.4 0 0" depth="0.15" height="0.15" width="0.15"
+                        navigate-on-click="url: https://in.linkedin.com/in/deepakshrivastava1389">
+                        <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+                    <a-box src="#facebook_icon" position="0.8 0 0" depth="0.15" height="0.15" width="0.15"
+                        navigate-on-click="url: https://www.facebook.com/deepushri/">
+                        <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite">
+                        </a-animation>
+                    </a-box>
+                </a-plane>
+
+
             </a-entity>
-            
+
+            <a-entity id="emp-face-entity" employee-face="url: abc" geometry="primitive: plane;  width:1;  height: 1;"
+                material="shader: flat; src: #emp-face;" visible="true" scale="1 1 1" rotation="-90 0 0">
+            </a-entity>
+
         </a-marker>
 
-        <a-entity camera></a-entity>
+        <!-- <a-entity camera></a-entity> -->
     </a-scene>
 </body>
 
